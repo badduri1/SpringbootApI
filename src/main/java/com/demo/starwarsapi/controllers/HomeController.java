@@ -31,7 +31,7 @@ public class HomeController {
 		if (serverPort != 80 && serverPort != 443)
 			url.append(":").append(serverPort);
 
-		url.append("/planets");
+		url.append("/planets/10");
 		String docUrl = url.toString();
 		return docUrl;
 	}

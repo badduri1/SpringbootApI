@@ -1,5 +1,10 @@
 package com.demo.starwarsapi.controllers;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,12 +27,12 @@ public class PlanetsController {
 	private SwapiService swapiService;
 
 	@GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getPlanet(@PathVariable String id) {
+	public ResponseEntity<String> getPlanet(@PathVariable @Max(256) Integer id) {
 
-		String planet = swapiService.findPlanetByName(id);
+		ResponseEntity<String> planet = swapiService.findPlanetById(id);
 
 		if (planet != null) {
-			return ResponseEntity.ok(planet);
+			return ResponseEntity.ok(planet.getBody());
 		}
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The Planet with id " + id + " was not found");

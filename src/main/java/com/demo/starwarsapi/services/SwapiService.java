@@ -22,12 +22,12 @@ public class SwapiService {
 
 	// Static Members:
 	private final static Logger LOGGER = LoggerFactory.getLogger(SwapiService.class);
-	private final static String FMT_URL = "https://swapi.dev/api/planets/{id}";
+	private final static String URL = "https://swapi.dev/api/planets/{id}";
 
 	@Autowired
 	private RestTemplate restTemplate;
 
-	public String findPlanetByName(String id) {
+	public ResponseEntity<String> findPlanetById(Integer id) {
 		ResponseEntity<String> response = null;
 		try {
 
@@ -35,12 +35,12 @@ public class SwapiService {
 
 			HttpEntity requestEntity = new HttpEntity<>(headers);
 
-			response = restTemplate.exchange(FMT_URL, HttpMethod.GET, requestEntity, String.class, id);
+			response = restTemplate.exchange(URL, HttpMethod.GET, requestEntity, String.class, id);
 
 		} catch (RestClientException e) {
 			LOGGER.error(e.getMessage(), e);
 		}
-		return response.getBody();
+		return response;
 	}
 
 }

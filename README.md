@@ -27,6 +27,8 @@ Since this is java maven spring boot project, you need the JVM installed in your
 
 To run this project there is a Boot.java class that there is a main method, just run it or use the maven command: `mvn clean compile spring-boot:run` and see the results in [http://localhost:8080/](http://localhost:8080/)
 
+Added the JAr file and open the CMD promt run the java -jar Starwarapi-0.0.1-SNAPSHOT.jar
+
 In order to package the application run the command `mvn clean package` and see the output file `starwarsapi-1.0.0.jar` in the target folder. To run the api with the jar generated just use the command `java -jar starwarsapi-1.0.0.jar`
 
 ## Usage:
